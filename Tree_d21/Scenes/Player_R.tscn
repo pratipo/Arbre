@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/sprites/axe_iron.png" type="Texture" id=1]
 [ext_resource path="res://Assets/sprites/character/zombie_leg.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Assets/sprites/character/zombie_body.png" type="Texture" id=4]
 [ext_resource path="res://Assets/sprites/character/zombie_arm.png" type="Texture" id=5]
 [ext_resource path="res://Script/Player_R.gd" type="Script" id=6]
+[ext_resource path="res://Assets/sprites/character/zombie_hit.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 42.2992
@@ -40,10 +41,12 @@ rotation = 0.20944
 texture = ExtResource( 1 )
 flip_h = true
 
-[node name="Area2D" type="Area2D" parent="Body/Axe"]
+[node name="Area2D" type="Area2D" parent="Body/Axe" groups=[
+"Axes",
+]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Body/Axe/Area2D"]
-position = Vector2( -13.0519, -8.98569 )
+position = Vector2( -22.8064, -24.6589 )
 rotation = -0.20944
 shape = SubResource( 1 )
 
@@ -51,3 +54,12 @@ shape = SubResource( 1 )
 position = Vector2( -23.753, 58.0233 )
 rotation = 1.29154
 texture = ExtResource( 5 )
+
+[node name="Dead" type="Sprite" parent="Body"]
+visible = false
+position = Vector2( 0, 160 )
+texture = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Body/Dead"]
+wait_time = 3.0
+[connection signal="timeout" from="Body/Dead/Timer" to="." method="_on_Timer_timeout"]
