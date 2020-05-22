@@ -9,6 +9,8 @@
 
 [node name="Game" type="Node"]
 script = ExtResource( 5 )
+Player_R_Scene = ExtResource( 3 )
+Player_L_Scene = ExtResource( 7 )
 
 [node name="Back" type="Sprite" parent="."]
 position = Vector2( 644.625, 445.13 )
