@@ -74,18 +74,18 @@ anims/punch = SubResource( 1 )
 anims/punch = SubResource( 2 )
 anims/punch_R = SubResource( 3 )
 
-[node name="Player_Chof" type="Area2D" parent="." groups=[
-"Chof",
+[node name="High_Trunk" type="Area2D" parent="." groups=[
+"High_Trunk",
 ]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player_Chof"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="High_Trunk"]
 position = Vector2( 9.6503, -272.048 )
 shape = SubResource( 4 )
 
-[node name="Trunk_Chop" type="Area2D" parent="." groups=[
-"Chop",
+[node name="Low_Trunk" type="Area2D" parent="." groups=[
+"Low_Trunk",
 ]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Trunk_Chop"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Low_Trunk"]
 position = Vector2( 8.61429, -165.098 )
 shape = SubResource( 5 )

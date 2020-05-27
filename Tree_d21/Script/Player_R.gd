@@ -6,14 +6,19 @@ onready var Taimer = $Timer
 
 var speed = 230
 var direction = -1
+var game 
 
 
 func _ready():
+	game = get_parent()
 	connect("area_entered", self, "_on_area_entered")
+#què és el self????
 
-func _on_area_entered(area):
-	if area.is_in_group("Chof"):
-		Player_R.dead()
+func _on_area_entered(Axe):
+	if Axe.is_in_group("Low_Trunk"):
+		game.die_tree()
+	if Axe.is_in_group("High_Trunk"):
+		game.die_player()
 
 #func initialise_Player_R():
 	#pass
@@ -27,9 +32,6 @@ func remove (from_left):
 		else:
 			direction = 1
 
-func dead ():
-	Dead.position.x = Player_R.position.x
-	Dead.visible = true
 	 
 func _on_Timer_timeout():
 	pass # Replace with function body.

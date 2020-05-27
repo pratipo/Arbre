@@ -3,9 +3,18 @@ extends Node2D
 onready var tree_L = $Tree_Left
 onready var tree_R = $Tree_Right
 
+var game
 
 func _ready():
-	pass
+	game = get_parent()
+	connect("area_entered", self, "_on_area_entered")
+
+#Ho he dit tot a l'script del Player_R - No funciona només allà... 
+func _on_area_entered(High_Trunk, Low_Trunk):
+	if High_Trunk.is_in_group("Axe"):
+		game.die_player()
+	if Low_Trunk.is_in_group("Axe"):
+		game.die_tree()
 
 
 func _input(event):
