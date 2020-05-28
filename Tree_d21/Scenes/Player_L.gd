@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var Player_L = $Player_L
+#onready var Player_L = $Player_L
 
 var speed = 230
 var direction = 1

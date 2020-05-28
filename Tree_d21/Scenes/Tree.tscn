@@ -3,6 +3,12 @@
 [ext_resource path="res://Assets/sprites/Tree.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Tree.gd" type="Script" id=2]
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 111.963, 207.898 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 52.7768
+
 [sub_resource type="Animation" id=1]
 resource_name = "punch"
 length = 0.3
@@ -51,12 +57,6 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0, 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 35.8183, 376.867 )
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 52.7768
-
 [node name="Tree" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -67,25 +67,31 @@ texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -350, -900 )
 
+[node name="High_Trunk" type="Area2D" parent="Tree" groups=[
+"High_Trunk",
+]]
+position = Vector2( 0, 21.6823 )
+scale = Vector2( 1.25, 1.37155 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/High_Trunk"]
+position = Vector2( 8.69663, -451.332 )
+shape = SubResource( 4 )
+
+[node name="Low_Trunk" type="Area2D" parent="Tree" groups=[
+"Low_Trunk",
+]]
+position = Vector2( 0, 21.6823 )
+scale = Vector2( 1.25, 1.37155 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Low_Trunk"]
+position = Vector2( 4.1918, -112.028 )
+shape = SubResource( 5 )
+
 [node name="Tree_Left" type="AnimationPlayer" parent="."]
 anims/punch = SubResource( 1 )
 
 [node name="Tree_Right" type="AnimationPlayer" parent="."]
 anims/punch = SubResource( 2 )
 anims/punch_R = SubResource( 3 )
-
-[node name="High_Trunk" type="Area2D" parent="." groups=[
-"High_Trunk",
-]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="High_Trunk"]
-position = Vector2( 9.6503, -272.048 )
-shape = SubResource( 4 )
-
-[node name="Low_Trunk" type="Area2D" parent="." groups=[
-"Low_Trunk",
-]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Low_Trunk"]
-position = Vector2( 8.61429, -165.098 )
-shape = SubResource( 5 )
+[connection signal="area_entered" from="Tree/High_Trunk" to="." method="_on_High_Trunk_area_entered"]
+[connection signal="area_entered" from="Tree/Low_Trunk" to="." method="_on_Low_Trunk_area_entered"]
