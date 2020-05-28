@@ -1,20 +1,25 @@
 extends Node
 
 
-#export (PackedScene) var Player_R
+#export (PackedScene) var player_r
 #??
-
-
-
-onready var FirstPosition_R = $FirstPosition_R
-#onready var FirstPosition_L = $FirstPosition_L
-onready var Dead_Player = $Dead_Player
-#onready var Timer = $Dead_Player/Timer 
-onready var Dead_Tree = $Dead_Tree
-
 
 onready var tree = preload ("res://Scenes/Tree.tscn")
 onready var Player_R = preload ("res://Scenes/Player_R.tscn")
+
+onready var FirstPosition_R = $FirstPosition_R
+#onready var FirstPosition_L = $FirstPosition_L
+#FirstPosition = en cas de voler automatitzar l'entrada de players...
+
+onready var Dead_Player = $Dead_Player
+#onready var Timer = $Dead_Player/Timer 
+onready var Dead_Tree = $Dead_Tree
+onready var timer = $Timer
+
+var dead_p = false
+var dead_t = false
+# p=player ; t=tree
+
 
 
 func _ready():
@@ -24,32 +29,38 @@ func _ready():
 	
 	
 func _process(_delta):
-	#ESTOS IFS AQUÍ NO LOS PONE!
+	if dead_p:
+		return
+	if dead_t:
+		return
+	
+	#ESTOS IFS AQUÍ NO LOS PONE! ELS HE POSAT ALS SCRIPTS DE TREE I PLAYER
 	#if collision areas del hacha y del tronco bajo tocan = dead árbol
 		#if dead_tree:
 			#return #END OF THE GAME...
 	#if collision areas del hacha y del tronco alto tocan = dead hombre
 		#if dead_player:
 			#return #repetir animación, que sigan entrando 'mans'
-	pass
+
+
 
 func die_player():
 #if las "area entered (en el tree)" true, Dead_Player 
-	Dead_Player.position.x = Player_R.position.x
 	
 	if Dead_Player:
+		Dead_Player.position.x = Player_R.position.x
 		Dead_Player.visible = true
-		#Timer.start()
+		dead_p = true
 		Player_R.queue_free()
-	#reempezar el juego
+	timer.strat()
 
 func die_tree():
 	if Dead_Tree:
 		Dead_Tree.visible = true
-		#Timer.start()
-		Dead_Tree.queue_free()
-	#reempezar el juego
+		dead_t = true
+		tree.queue_free()
+	timer.strat()
+#I no es poden unificar els dos casos de mort, del tree i del player, en una mateixa funció? 
 
-#func _on_Timer_timeout():
-	#get_tree().reload_current_scene()
-
+func _on_Timer_timeout():
+	get_tree().reload_current_scene()

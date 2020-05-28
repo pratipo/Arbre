@@ -76,10 +76,12 @@ position = Vector2( 525.811, 463.849 )
 position = Vector2( 1276.47, 607.759 )
 
 [node name="Dead_Player" type="Sprite" parent="."]
+visible = false
 position = Vector2( 1315, 622 )
 scale = Vector2( 1, 1.01703 )
 texture = ExtResource( 6 )
 
-[node name="Timer" type="Timer" parent="Dead_Player"]
-wait_time = 3.0
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
