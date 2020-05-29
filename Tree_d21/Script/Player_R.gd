@@ -2,7 +2,7 @@ extends Node2D
 
 #onready var Player_R = $Player_R
 #onready var Taimer = $Timer
-
+onready var tree = preload ("res://Scenes/Tree.tscn").instance()
 onready var Corpse = $Corpse
 onready var Timer_Player = $Timer_Player
 onready var Body = $Body
@@ -22,10 +22,9 @@ func _ready():
 func _on_Player_R_area_entered(area):
 	if area.is_in_group("Low_Trunk"):
 		print("hit low trunk")
-		#die_tree()
+		tree.die_tree()
 		
 	if area.is_in_group("High_Trunk"):
-		print("hit hight trunk")
 		die_player()
 		
 
