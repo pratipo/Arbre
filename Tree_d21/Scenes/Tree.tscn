@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/sprites/Tree.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Tree.gd" type="Script" id=2]
+[ext_resource path="res://Assets/sprites/trunk_mid.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 111.963, 207.898 )
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="CircleShape2D" id=2]
 radius = 52.7768
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("Tree:rotation_degrees")
@@ -49,6 +50,11 @@ texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -350, -900 )
 
+[node name="Dead_Tree" type="Sprite" parent="Tree"]
+position = Vector2( 10.4937, -59.3 )
+scale = Vector2( 0.998589, 1.31758 )
+texture = ExtResource( 3 )
+
 [node name="High_Trunk" type="Area2D" parent="Tree" groups=[
 "High_Trunk",
 ]]
@@ -57,7 +63,7 @@ scale = Vector2( 1.25, 1.37155 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/High_Trunk"]
 position = Vector2( 8.69663, -451.332 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Low_Trunk" type="Area2D" parent="Tree" groups=[
 "Low_Trunk",
@@ -67,12 +73,10 @@ scale = Vector2( 1.25, 1.37155 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Low_Trunk"]
 position = Vector2( 4.1918, -112.028 )
-shape = SubResource( 7 )
+shape = SubResource( 2 )
 
 [node name="Tree_Left" type="AnimationPlayer" parent="."]
-anims/punch = SubResource( 8 )
+anims/punch = SubResource( 3 )
 
 [node name="Tree_Right" type="AnimationPlayer" parent="."]
 anims/punch = SubResource( 4 )
-[connection signal="area_entered" from="Tree/High_Trunk" to="." method="_on_High_Trunk_area_entered"]
-[connection signal="area_entered" from="Tree/Low_Trunk" to="." method="_on_Low_Trunk_area_entered"]
