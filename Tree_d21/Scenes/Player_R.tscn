@@ -59,13 +59,14 @@ position = Vector2( -23.753, 58.0233 )
 rotation = 1.29154
 texture = ExtResource( 5 )
 
-[node name="Dead_Player" type="Sprite" parent="Body"]
-position = Vector2( 0, 144 )
-texture = ExtResource( 7 )
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -48, -72 )
 shape = SubResource( 2 )
+
+[node name="Corpse" type="Sprite" parent="."]
+position = Vector2( 0, 12 )
+scale = Vector2( 1, 1.125 )
+texture = ExtResource( 7 )
 
 [node name="Timer_Player" type="Timer" parent="."]
 wait_time = 3.0

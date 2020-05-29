@@ -5,7 +5,7 @@ onready var tree_R = $Tree_Right
 onready var High_Trunk = $Tree/High_Trunk
 onready var Low_Trunk = $Tree/Low_Trunk
 onready var Dead_Tree = $Tree/Dead_Tree
-onready var Game = $Game
+
 #onready var Game = preload ("res://Scenes/Game.tscn").instance()
 
 var game

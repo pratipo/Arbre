@@ -11,7 +11,7 @@ onready var FirstPosition_R = $FirstPosition_R
 #onready var FirstPosition_L = $FirstPosition_L
 #FirstPosition = en cas de voler automatitzar l'entrada de players...
 
-onready var Dead_Player = $Player_R/Body/Dead_Player
+onready var Corpse = $Player_R/Corpse
 onready var Dead_Tree = $Tree/Tree/Dead_Tree
 onready var Timer_Joc = $Timer_Joc
 
@@ -22,15 +22,15 @@ onready var Timer_Joc = $Timer_Joc
 
 func _ready():
 	#first_players()
-	pass
+	Dead_Tree.visible = false
 	
 func _process(_delta):
-	if Dead_Player:
-		print("dead p @ game -process")
-		return
+
 	if Dead_Tree:
+		Timer_Joc.start()
+		Dead_Tree.visible = true
 		print("dead tree @ game -process")
-		return
+		
 
 func _on_Timer_Joc_timeout():
 	get_tree().reload_current_scene()
