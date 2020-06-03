@@ -13,7 +13,7 @@
 radius = 42.2992
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 88, 72 )
+extents = Vector2( 80.2733, 72 )
 
 [node name="Player_R" type="Area2D" groups=[
 "Player",
@@ -25,24 +25,25 @@ tree = ExtResource( 8 )
 position = Vector2( 0, -144 )
 
 [node name="Head" type="Sprite" parent="Body"]
+position = Vector2( 31.7267, -0.953979 )
 texture = ExtResource( 3 )
 
 [node name="Leg1" type="Sprite" parent="Body"]
-position = Vector2( 16.0335, 113.084 )
+position = Vector2( 47.7602, 112.13 )
 rotation = -0.397935
 texture = ExtResource( 2 )
 
 [node name="Leg2" type="Sprite" parent="Body"]
-position = Vector2( -15.9189, 112.387 )
+position = Vector2( 15.8078, 111.433 )
 rotation = 0.397935
 texture = ExtResource( 2 )
 
 [node name="Core" type="Sprite" parent="Body"]
-position = Vector2( 0, 61.5274 )
+position = Vector2( 31.7267, 60.5734 )
 texture = ExtResource( 4 )
 
 [node name="Axe" type="Sprite" parent="Body"]
-position = Vector2( -78.8189, 36.8618 )
+position = Vector2( -47.0922, 35.9078 )
 rotation = 0.20944
 texture = ExtResource( 1 )
 flip_h = true
@@ -57,20 +58,22 @@ rotation = -0.20944
 shape = SubResource( 1 )
 
 [node name="Arm" type="Sprite" parent="Body"]
-position = Vector2( -23.753, 58.0233 )
+position = Vector2( 7.97371, 57.0693 )
 rotation = 1.29154
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -48, -72 )
+position = Vector2( -16.2733, -72.954 )
 shape = SubResource( 2 )
 
 [node name="Corpse" type="Sprite" parent="."]
-position = Vector2( 0, 12 )
+position = Vector2( 31.7267, 11.046 )
 scale = Vector2( 1, 1.125 )
 texture = ExtResource( 7 )
 
 [node name="Timer_Player" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="First_Position_R" type="Position2D" parent="."]
 [connection signal="area_entered" from="." to="." method="_on_Player_R_area_entered"]
 [connection signal="timeout" from="Timer_Player" to="." method="_on_Timer_Player_timeout"]

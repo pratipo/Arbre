@@ -8,12 +8,12 @@
 extents = Vector2( 111.963, 207.898 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 52.7768
+radius = 36.4554
 
 [sub_resource type="Animation" id=3]
 length = 0.3
 tracks/0/type = "value"
-tracks/0/path = NodePath("Tree:rotation_degrees")
+tracks/0/path = NodePath("Sprite_Tree:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -28,7 +28,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=4]
 length = 0.4
 tracks/0/type = "value"
-tracks/0/path = NodePath("Tree:rotation_degrees")
+tracks/0/path = NodePath("Sprite_Tree:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -40,7 +40,7 @@ tracks/0/keys = {
 "values": [ 0.0, 90.0, 0.0 ]
 }
 
-[node name="TREE" type="Node2D"]
+[node name="Tree" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Dead_Tree" type="Sprite" parent="."]
@@ -48,31 +48,31 @@ position = Vector2( 8.39496, -59.0443 )
 scale = Vector2( 0.798871, 0.960649 )
 texture = ExtResource( 3 )
 
-[node name="Tree" type="Sprite" parent="."]
+[node name="Sprite_Tree" type="Sprite" parent="."]
 position = Vector2( 0, -15.8086 )
 scale = Vector2( 0.8, 0.729101 )
 texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -350, -900 )
 
-[node name="High_Trunk" type="Area2D" parent="Tree" groups=[
+[node name="High_Trunk" type="Area2D" parent="Sprite_Tree" groups=[
 "High_Trunk",
 ]]
 position = Vector2( 0, 21.6823 )
 scale = Vector2( 1.25, 1.37155 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/High_Trunk"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite_Tree/High_Trunk"]
 position = Vector2( 8.69663, -451.332 )
 shape = SubResource( 1 )
 
-[node name="Low_Trunk" type="Area2D" parent="Tree" groups=[
+[node name="Low_Trunk" type="Area2D" parent="Sprite_Tree" groups=[
 "Low_Trunk",
 ]]
 position = Vector2( 0, 21.6823 )
 scale = Vector2( 1.25, 1.37155 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tree/Low_Trunk"]
-position = Vector2( 4.1918, -112.028 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite_Tree/Low_Trunk"]
+position = Vector2( 7.54977, -112.588 )
 shape = SubResource( 2 )
 
 [node name="Tree_Left" type="AnimationPlayer" parent="."]
