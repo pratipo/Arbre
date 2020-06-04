@@ -3,18 +3,19 @@ extends Node2D
 #onready var Player_R = $Player_R
 #onready var Taimer = $Timer
 #onready var tree = preload ("res://Scenes/Tree.tscn").instance(PackedScene)
-export (PackedScene) var tree
+
+export (PackedScene) var Arbre_Scene
 
 onready var Corpse = $Corpse
-onready var Timer_Player = $Timer_Player
+onready var Dead_Player = $Dead_Player
 onready var Body = $Body
 
 var speed = 230
 var direction = -1
 
+var Game_Scene
 
 func _ready():
-	var tree = tree.instance(PackedScene)
 	Body.visible = true
 	Corpse.visible = false
 
@@ -26,13 +27,15 @@ func _process(delta):
 func _on_Player_R_area_entered(area):
 	if area.is_in_group("Low_Trunk"):
 		speed = 0
+		var tree = Arbre_Scene.instance()
+		add_child(tree)
 		tree.die_tree()
+		
 		print("dead tree")
 		
 	if area.is_in_group("High_Trunk"):
 		die_player()
 		
-
 
 func die_player():
 #	if Dead_Player:
@@ -40,10 +43,10 @@ func die_player():
 	Body.visible = false
 	Corpse.visible = true
 	speed = 0
-	Timer_Player.start()
+	Dead_Player.start()
 
 
-func _on_Timer_Player_timeout():
+func _on_Dead_Player_timeout():
 	queue_free()
 	
 	

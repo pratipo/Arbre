@@ -80,7 +80,3 @@ anims/punch = SubResource( 3 )
 
 [node name="Tree_Right" type="AnimationPlayer" parent="."]
 anims/punch = SubResource( 4 )
-
-[node name="Timer_Tree" type="Timer" parent="."]
-wait_time = 3.0
-[connection signal="timeout" from="Timer_Tree" to="." method="_on_Timer_Tree_timeout"]
