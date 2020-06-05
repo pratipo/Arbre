@@ -29,8 +29,3 @@ func _input(event):
 		tree_R.play("punch")
 	elif event.is_action_pressed ("LeftMouseButton"):
 		tree_L.play("punch")
-
-
-
-
-

@@ -1,35 +1,35 @@
 extends Node
 
-
 export (PackedScene) var Player_Scene
 
-#export (PackedScene) var tree_Scene 
 
-onready var Dead_Tree = $Tree/Dead_Tree
+onready var tree = $Tree
 
-onready var First_Position_R = $First_Position_R
-
+onready var Dead_Tree = $Dead_Tree
 onready var Timer_Joc = $Timer_Joc
 
 
+#func _init():
+#	var tree = Arbre_Scene.instance()
+#	add_child(tree)
+
+
 func _ready():
-#	var tree = tree_Scene.instance()
 	Dead_Tree.visible = false
+	tree.visible = true
+	die_tree()
 
-#	while true: 
-#		randomize()
-#		var new_player_r = Player_R
-#		add_child(new_player_r)
-#		yield (get_tree().create_timer(rand_range(0.5, 1.25)),"timeout")
 
-	
 func die_tree():
-#	Dead_Tree.visible = true
-#	Timer_Joc.start()
-#	tree.queue_free()
-	pass
+	var Player_Reaches = Player_Scene.instance()
+	add_child(Player_Reaches)
+	Player_Reaches._on_Player_R_area_entered().is_in_group("Low_Trunk")
+	if Player_Reaches: 
+		tree.queue_free()
+		Dead_Tree.visible = true
+		Timer_Joc.start()
+
 
 func _on_Timer_Joc_timeout():
-	get_tree().change_scene("res://Scenes/Game.tscn")
-	
-
+	get_tree().reload_current_scene()
+#	get_tree().change_scene("res://Scenes/Game.tscn")

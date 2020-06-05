@@ -14,4 +14,3 @@ func spawn():
 
 func _on_Timer_timeout():
 	spawn()
-
