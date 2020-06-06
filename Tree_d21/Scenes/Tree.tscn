@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Tree.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 111.963, 207.898 )
+extents = Vector2( 161.139, 55.3211 )
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 36.4554
@@ -56,7 +56,7 @@ position = Vector2( 0, 21.6823 )
 scale = Vector2( 1.25, 1.37155 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite_Tree/High_Trunk"]
-position = Vector2( 8.69663, -451.332 )
+position = Vector2( 6.28287, -382.261 )
 shape = SubResource( 1 )
 
 [node name="Low_Trunk" type="Area2D" parent="Sprite_Tree" groups=[

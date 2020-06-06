@@ -76,13 +76,13 @@ texture = ExtResource( 2 )
 wait_time = 5.0
 autostart = true
 
-[node name="First_Position_R" type="Position2D" parent="."]
-position = Vector2( 1280.03, 608.004 )
+[node name="Position_R" type="Position2D" parent="."]
+position = Vector2( 1280.03, 609.004 )
 
-[node name="First_Position_L" type="Position2D" parent="."]
-position = Vector2( 0.87146, 608.004 )
+[node name="Position_L" type="Position2D" parent="."]
+position = Vector2( 0.871, 609.004 )
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Timer_Spawner" type="Timer" parent="."]
 autostart = true
 [connection signal="timeout" from="Timer_Joc" to="." method="_on_Timer_Joc_timeout"]
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Timer_Spawner" to="." method="_on_Timer_Spawner_timeout"]

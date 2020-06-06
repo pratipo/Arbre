@@ -7,12 +7,13 @@ onready var Dead_Tree = $Dead_Tree
 
 onready var Timer_Joc = $Timer_Joc
 
-onready var Spawner_R = $First_Position_R
-onready var Spawner_L = $First_Position_L
-onready var Timer_Spawner = $Timer
+onready var Timer_Spawner = $Timer_Spawner
 
-var players_R = []
-var players_L = []
+onready var Spawner_R = $Position_R
+onready var Spawner_L = $Position_L
+var players = []
+#var players_R = []
+#var players_L = []
 
 
 func _ready():
@@ -22,30 +23,20 @@ func _ready():
 	Timer_Spawner.start()
 
 
-func spawn_R():
-	var Player_R = Player_Scene.instance()
-	add_child(Player_R)
-	Player_R.position = Spawner_R.position
-	players_R.append(Player_R)
-	
-	var r = rand_range(0.5, 3)
-	Timer_Spawner.set_wait_time(r)
+func spawn():
+	#(from_right, from_left): per fer un if??
+	for spawn in [Spawner_R, Spawner_L]:
+		var Player_R = Player_Scene.instance()
+		add_child(Player_R)
+		players.append(Player_R)
+		Player_R.position = Spawner_R.position
+		var r = rand_range(1, 10)
+		Timer_Spawner.set_wait_time(r)
+		print ("spawn_R")
 
 
-func spawn_L():
-	var Player_L = Player_Scene.instance()
-	add_child(Player_L)
-	Player_L.position = Spawner_L.position
-	players_L.append(Player_L)
-	
-	var r = rand_range(0.5, 3)
-	Timer_Spawner.set_wait_time(r)
-
-
-func _on_Timer_timeout():
-	spawn_R()
-	spawn_L()
-
+func _on_Timer_Spawner_timeout():
+	spawn()
 
 func die_tree():
 	tree.queue_free()
