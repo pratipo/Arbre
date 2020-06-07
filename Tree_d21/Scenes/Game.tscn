@@ -12,6 +12,7 @@
 ]]
 script = ExtResource( 5 )
 Player_Scene = ExtResource( 3 )
+Other_Player_Scene = ExtResource( 3 )
 
 [node name="Back" type="Sprite" parent="."]
 position = Vector2( 644.625, 445.13 )
@@ -28,9 +29,6 @@ texture = ExtResource( 7 )
 position = Vector2( 640, 671 )
 
 [node name="Ground" type="Node2D" parent="."]
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Tile" type="Sprite" parent="Ground"]
 position = Vector2( 64, 672 )
@@ -81,6 +79,7 @@ position = Vector2( 1280.03, 609.004 )
 
 [node name="Position_L" type="Position2D" parent="."]
 position = Vector2( 0.871, 609.004 )
+scale = Vector2( -1, 1 )
 
 [node name="Timer_Spawner" type="Timer" parent="."]
 autostart = true
