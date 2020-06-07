@@ -4,9 +4,9 @@ onready var Corpse = $Corpse
 onready var Death_Timer = $Death_Timer
 onready var Body = $Body
 
+
 var speed = 230
 var direction = -1
-var direction_L = 1
 
 var game
 
@@ -15,17 +15,16 @@ func _ready():
 	game = get_tree().get_root().get_node("Game")
 	Body.visible = true
 	Corpse.visible = false
-
+	flip_Player_L()
+	
 
 func _process(delta):
 	position.x += speed * direction * delta 
 
 
-#func flip_Player_L():
-#	if direction == 1:
-#		Body.flip_h(true)
-#	else: 
-#		Body.flip_h(false)
+func flip_Player_L():
+	Body.set_flip_h(false)
+#	direction = 1
 
 
 func _on_Player_area_entered(area):

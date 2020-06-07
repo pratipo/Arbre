@@ -13,12 +13,12 @@ onready var Spawner_R = $Position_R
 onready var Spawner_L = $Position_L
 
 var speed = 230
+var direction = -1
 
 var players = []
 
 var Player_R
 var Player_L
-var Body_L
 
 
 
@@ -27,18 +27,10 @@ func _ready():
 	add_child(Player_R)
 	Player_L = Other_Player_Scene.instance()
 	add_child(Player_L)
-#	Body_L = Player_L.get_node("/root/Game/@Player@2/Body")
-#	flip_Player_L(true)
-	spawn_players()
 	Timer_Spawner.start()
+	spawn_players()
 	Dead_Tree.visible = false
 	tree.visible = true
-
-#func flip_Player_L(Body_L):
-#	if Body_L:
-#		Body_L.scale.x = -abs(Body_L.scale.x)
-#	else:
-#		Body_L.scale.x = abs(Body_L.scale.x)
 
 
 func spawn_players():
@@ -50,13 +42,13 @@ func spawn_players():
 	Timer_Spawner.set_wait_time(r)
 	print ("spawn_R") 
 	
-	
 	var new_Player_L = Other_Player_Scene.instance() 
 	add_child(new_Player_L)
-#	flip_Player_L(true)
+	new_Player_L.flip_Player_L()
+	new_Player_L.direction = 1
 	new_Player_L.position = Spawner_L.position
 	players.append(new_Player_L)
-	var l = rand_range(0.1, 3)
+	var l = rand_range(0.1, 7)
 	Timer_Spawner.set_wait_time(l)
 	print ("spawn_L") 
 

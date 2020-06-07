@@ -9,14 +9,14 @@
 [ext_resource path="res://Assets/sprites/character/zombie_hit.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 80.2733, 72 )
+extents = Vector2( 85.9093, 72 )
 
 [node name="Player" type="Area2D" groups=[
 "Player",
 ]]
 script = ExtResource( 6 )
 
-[node name="Body" type="Node2D" parent="."]
+[node name="Body" type="Sprite" parent="."]
 position = Vector2( 0, -144 )
 
 [node name="Head" type="Sprite" parent="Body"]
@@ -46,10 +46,11 @@ flip_h = true
 [node name="Arm" type="Sprite" parent="Body"]
 position = Vector2( 7.97371, 57.0693 )
 rotation = 1.29154
+scale = Vector2( 1, 1 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -16.2733, -72.954 )
+position = Vector2( -4.2733, -72.954 )
 shape = SubResource( 1 )
 
 [node name="Corpse" type="Sprite" parent="."]
