@@ -29,7 +29,6 @@ func _on_Player_area_entered(area):
 	if area.is_in_group("Low_Trunk"):
 #		speed = 0
 		game.die_tree()
-		print("dead tree")
 		
 	if area.is_in_group("High_Trunk"):
 		die_player()
@@ -41,4 +40,5 @@ func die_player():
 	Death_Timer.start()
 
 func _on_Death_Timer_timeout():
+#	Corpse.queue_free()
 	queue_free()

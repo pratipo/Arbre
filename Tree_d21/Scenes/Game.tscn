@@ -15,7 +15,7 @@ Player_Scene = ExtResource( 3 )
 Other_Player_Scene = ExtResource( 3 )
 
 [node name="Back" type="Sprite" parent="."]
-position = Vector2( 644.625, 445.13 )
+position = Vector2( 648, 448 )
 scale = Vector2( 2.5737, 2.5737 )
 texture = ExtResource( 1 )
 
@@ -71,7 +71,7 @@ position = Vector2( 1216, 672 )
 texture = ExtResource( 2 )
 
 [node name="Timer_Joc" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 autostart = true
 
 [node name="Position_R" type="Position2D" parent="."]
@@ -82,6 +82,10 @@ position = Vector2( 0.871, 609.004 )
 scale = Vector2( -1, 1 )
 
 [node name="Timer_Spawner" type="Timer" parent="."]
+wait_time = 0.7
 autostart = true
+
+[node name="Timer_Title" type="Timer" parent="."]
 [connection signal="timeout" from="Timer_Joc" to="." method="_on_Timer_Joc_timeout"]
 [connection signal="timeout" from="Timer_Spawner" to="." method="_on_Timer_Spawner_timeout"]
+[connection signal="timeout" from="Timer_Title" to="." method="_on_Timer_Title_timeout"]

@@ -58,6 +58,6 @@ scale = Vector2( 1, 1.125 )
 texture = ExtResource( 7 )
 
 [node name="Death_Timer" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 1.25
 [connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
 [connection signal="timeout" from="Death_Timer" to="." method="_on_Death_Timer_timeout"]
