@@ -15,34 +15,30 @@ func _ready():
 	game = get_tree().get_root().get_node("Game")
 	Body.visible = true
 	Corpse.visible = false
-	flip_Player_L()
-	
 
 func _process(delta):
 	position.x += speed * direction * delta 
 
-
-func flip_Player_L():
-	Body.set_flip_h(false)
-#	direction = 1
-
+func flip_Player_L(cuerpo, muerto):
+	if cuerpo:
+		Body.scale.x = -1
+	if muerto:
+		Corpse.scale.x = -1
 
 func _on_Player_area_entered(area):
 	if area.is_in_group("Low_Trunk"):
-		speed = 0
+#		speed = 0
 		game.die_tree()
 		print("dead tree")
 		
 	if area.is_in_group("High_Trunk"):
 		die_player()
 
-
 func die_player():
 	Body.visible = false
 	Corpse.visible = true
 	speed = 0
 	Death_Timer.start()
-
 
 func _on_Death_Timer_timeout():
 	queue_free()

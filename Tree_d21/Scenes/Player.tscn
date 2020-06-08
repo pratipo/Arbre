@@ -46,7 +46,6 @@ flip_h = true
 [node name="Arm" type="Sprite" parent="Body"]
 position = Vector2( 7.97371, 57.0693 )
 rotation = 1.29154
-scale = Vector2( 1, 1 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -19,7 +19,7 @@ var players = []
 
 var Player_R
 var Player_L
-
+var Body_L
 
 
 func _ready():
@@ -32,30 +32,25 @@ func _ready():
 	Dead_Tree.visible = false
 	tree.visible = true
 
-
 func spawn_players():
 	var new_Player_R = Player_Scene.instance()
 	add_child(new_Player_R)
 	new_Player_R.position = Spawner_R.position
 	players.append(new_Player_R)
-	var r = rand_range(0.1, 3)
+	var r = rand_range(0.1, 5)
 	Timer_Spawner.set_wait_time(r)
-	print ("spawn_R") 
 	
 	var new_Player_L = Other_Player_Scene.instance() 
 	add_child(new_Player_L)
-	new_Player_L.flip_Player_L()
 	new_Player_L.direction = 1
 	new_Player_L.position = Spawner_L.position
+	new_Player_L.flip_Player_L(true, true)
 	players.append(new_Player_L)
-	var l = rand_range(0.1, 7)
+	var l = rand_range(0.1, 5)
 	Timer_Spawner.set_wait_time(l)
-	print ("spawn_L") 
-
 
 func _on_Timer_Spawner_timeout():
 	spawn_players()
-
 
 func die_tree():
 	tree.queue_free()
@@ -63,7 +58,6 @@ func die_tree():
 	tree.visible = false
 	Timer_Spawner.stop()
 	Timer_Joc.start()
-
 
 func _on_Timer_Joc_timeout():
 	get_tree().reload_current_scene()
