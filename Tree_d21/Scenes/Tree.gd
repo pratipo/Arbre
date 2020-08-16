@@ -1,44 +1,30 @@
 extends Node2D
 
+export (PackedScene) var Title_Scene
+
 onready var tree_L = $Tree_Left
 onready var tree_R = $Tree_Right
-onready var High_Trunk = $Tree/High_Trunk
-onready var Low_Trunk = $Tree/Low_Trunk
+
+onready var title = $Title
 
 var game
+var titol
 
 func _ready():
-	game = get_parent()
-	connect("area_entered", self, "_on_area_entered")
-
-func _on_High_Trunk_area_entered(area):
-	if area.is_in_group("Player"):
-		game.die_player()
-
-func _on_Low_Trunk_area_entered(area):
-	if area.is_in_group("Player"):
-		game.die_tree()
-
-
-#func _on_area_entered(High_Trunk, Low_Trunk):
-	#if High_Trunk.is_in_group("Axe"):
-		#game.die_player()
-	#if Low_Trunk.is_in_group("Axe"):
-		#game.die_tree()
-
-
+	game = get_tree().get_root().get_node("Game")
+	titol = Title_Scene.instance()
+	add_child(titol)
+	titol.visible = true
 
 func _input(event):
-	if (event is InputEventMouseButton) and event.is_action_pressed ("RightMouseButton"):
-		tree_R.play("punch_R")
+
+	if event.is_action_pressed ("RightMouseButton"):
+		tree_R.play("punch")
+		game._on_Timer_Title_timeout()
+		
 	elif event.is_action_pressed ("LeftMouseButton"):
-			tree_L.play("punch")
-	#else:
-		#tree_R = false
-		#tree_L = false
+		tree_L.play("punch")
+		game._on_Timer_Title_timeout()
 
-
-func _process(_delta):
-	pass
 
 

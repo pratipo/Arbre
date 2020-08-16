@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/sprites/axe_iron.png" type="Texture" id=1]
+[ext_resource path="res://Assets/sprites/character/zombie_leg.png" type="Texture" id=2]
+[ext_resource path="res://Assets/sprites/character/zombie_head.png" type="Texture" id=3]
+[ext_resource path="res://Assets/sprites/character/zombie_body.png" type="Texture" id=4]
+[ext_resource path="res://Assets/sprites/character/zombie_arm.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/Player.gd" type="Script" id=6]
+[ext_resource path="res://Assets/sprites/character/zombie_hit.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 85.9093, 72 )
+
+[node name="Player" type="Area2D" groups=[
+"Player",
+]]
+script = ExtResource( 6 )
+
+[node name="Body" type="Sprite" parent="."]
+position = Vector2( 0, -144 )
+
+[node name="Head" type="Sprite" parent="Body"]
+position = Vector2( 31.7267, -0.953979 )
+texture = ExtResource( 3 )
+
+[node name="Leg1" type="Sprite" parent="Body"]
+position = Vector2( 47.7602, 112.13 )
+rotation = -0.397935
+texture = ExtResource( 2 )
+
+[node name="Leg2" type="Sprite" parent="Body"]
+position = Vector2( 15.8078, 111.433 )
+rotation = 0.397935
+texture = ExtResource( 2 )
+
+[node name="Core" type="Sprite" parent="Body"]
+position = Vector2( 31.7267, 60.5734 )
+texture = ExtResource( 4 )
+
+[node name="Axe" type="Sprite" parent="Body"]
+position = Vector2( -47.0922, 35.9078 )
+rotation = 0.20944
+texture = ExtResource( 1 )
+flip_h = true
+
+[node name="Arm" type="Sprite" parent="Body"]
+position = Vector2( 7.97371, 57.0693 )
+rotation = 1.29154
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -4.2733, -72.954 )
+shape = SubResource( 1 )
+
+[node name="Corpse" type="Sprite" parent="."]
+position = Vector2( 31.7267, 11.046 )
+scale = Vector2( 1, 1.125 )
+texture = ExtResource( 7 )
+
+[node name="Death_Timer" type="Timer" parent="."]
+wait_time = 1.25
+[connection signal="area_entered" from="." to="." method="_on_Player_area_entered"]
+[connection signal="timeout" from="Death_Timer" to="." method="_on_Death_Timer_timeout"]

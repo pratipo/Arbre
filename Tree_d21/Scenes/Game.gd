@@ -1,66 +1,77 @@
 extends Node
 
+export (PackedScene) var Player_Scene
+export (PackedScene) var Other_Player_Scene
 
-#export (PackedScene) var player_r
-#??
+onready var titol = $Tree/Title
+onready var Timer_Title = $Timer_Title
 
-onready var tree = preload ("res://Scenes/Tree.tscn")
-onready var Player_R = preload ("res://Scenes/Player_R.tscn")
-
-onready var FirstPosition_R = $FirstPosition_R
-#onready var FirstPosition_L = $FirstPosition_L
-#FirstPosition = en cas de voler automatitzar l'entrada de players...
-
-onready var Dead_Player = $Dead_Player
-#onready var Timer = $Dead_Player/Timer 
+onready var tree = $Tree
 onready var Dead_Tree = $Dead_Tree
-onready var timer = $Timer
 
-var dead_p = false
-var dead_t = false
-# p=player ; t=tree
+onready var Timer_Joc = $Timer_Joc
+onready var Timer_Spawner = $Timer_Spawner
 
+onready var Spawner_R = $Position_R
+onready var Spawner_L = $Position_L
+
+var speed = 300
+var direction = -1
+
+var players = []
+
+var Player_R
+var Player_L
+var Body_L
 
 
 func _ready():
-	#first_players()
+#	Player_R = Player_Scene.instance()
+#	add_child(Player_R)
+#	Player_L = Other_Player_Scene.instance()
+#	add_child(Player_L)
+	Timer_Title.start()
+	Timer_Spawner.stop()
+#	spawn_players()
 	Dead_Tree.visible = false
-	Dead_Player.visible = false
-	
-	
-func _process(_delta):
-	if dead_p:
-		return
-	if dead_t:
-		return
-	
-	#ESTOS IFS AQUÍ NO LOS PONE! ELS HE POSAT ALS SCRIPTS DE TREE I PLAYER
-	#if collision areas del hacha y del tronco bajo tocan = dead árbol
-		#if dead_tree:
-			#return #END OF THE GAME...
-	#if collision areas del hacha y del tronco alto tocan = dead hombre
-		#if dead_player:
-			#return #repetir animación, que sigan entrando 'mans'
+	tree.visible = true
+
+func _on_Timer_Title_timeout():
+	titol.visible = false
+	titol.queue_free()
+	spawn_players()
+	Timer_Spawner.start()
 
 
+func spawn_players():
+	var new_Player_R = Player_Scene.instance()
+	add_child(new_Player_R)
+	new_Player_R.position = Spawner_R.position
+	players.append(new_Player_R)
+	var r = rand_range(0.1, 3)
+	Timer_Spawner.set_wait_time(r)
 
-func die_player():
-#if las "area entered (en el tree)" true, Dead_Player 
-	
-	if Dead_Player:
-		Dead_Player.position.x = Player_R.position.x
-		Dead_Player.visible = true
-		dead_p = true
-		Player_R.queue_free()
-	timer.strat()
+	var new_Player_L = Other_Player_Scene.instance() 
+	add_child(new_Player_L)
+	new_Player_L.direction = 1
+	new_Player_L.position = Spawner_L.position
+	new_Player_L.flip_Player_L(true, true)
+	players.append(new_Player_L)
+	var l = rand_range(0.1, 3)
+	Timer_Spawner.set_wait_time(l)
+
+func _on_Timer_Spawner_timeout():
+	spawn_players()
 
 func die_tree():
-	if Dead_Tree:
-		Dead_Tree.visible = true
-		dead_t = true
-		tree.queue_free()
-	timer.strat()
-#I no es poden unificar els dos casos de mort, del tree i del player, en una mateixa funció? 
+	tree.queue_free()
+	Dead_Tree.visible = true
+	tree.visible = false
+	Timer_Spawner.stop()
+	Timer_Joc.start()
 
-func _on_Timer_timeout():
+func _on_Timer_Joc_timeout():
 	get_tree().reload_current_scene()
+
+
+

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/sprites/trunk_mid copia.png" type="Texture" id=1]
+[ext_resource path="res://Assets/PressStart2P-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 41
+extra_spacing_bottom = -1
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 21
+extra_spacing_top = 4
+font_data = ExtResource( 2 )
+
+[node name="Title" type="Control"]
+margin_left = -544.0
+margin_top = -664.0
+margin_right = 736.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fons" type="Label" parent="."]
+margin_left = -160.0
+margin_top = -8.0
+margin_right = 1280.0
+margin_bottom = 584.0
+custom_styles/normal = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="."]
+margin_left = -52.0001
+margin_top = 163.0
+margin_right = 1316.0
+margin_bottom = 396.0
+custom_fonts/font = SubResource( 2 )
+text = "\"Por encima de mi cadáver.\"  
+
+                   — Árbol"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Clic" type="Label" parent="."]
+margin_left = 724.0
+margin_top = 341.0
+margin_right = 1165.0
+margin_bottom = 452.0
+custom_fonts/font = SubResource( 3 )
+text = "Clic
+izquierdo y derecho 
+para hacerlo saber..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
